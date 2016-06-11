@@ -29,11 +29,12 @@ public class Okno extends JDialog {
 		{
 			e.printStackTrace();
 		}
-		Ksiazka ksiazka=new Ksiazka("tytul","autor","data","wydawnictwo","kategoria");
+		//jakis test jednostkowy
+		/*Ksiazka ksiazka=new Ksiazka("tytul","autor","data","wydawnictwo","kategoria");
 		ksiazka.Zapisz_plik();
-		Ksiazka testt=new Ksiazka();
+		Ksiazka testt=new Ksiazka();*/
 		
-		test.setText(testt.kategoria);
+		//test.setText(testt.kategoria);
 	}	
 	
 

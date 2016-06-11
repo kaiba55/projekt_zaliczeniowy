@@ -24,6 +24,9 @@ public class Okno_admin extends JFrame {
 	 * Create the frame.
 	 */
 	public Okno_admin() {
+		Aktualizuj_Biblioteke akt=new Aktualizuj_Biblioteke();
+		Thread thread=new Thread(akt);
+		thread.start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -38,7 +41,10 @@ public class Okno_admin extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new Okno_dodaj_ksiazke();
+				Dodaj_ksiazke_view temp=new Dodaj_ksiazke_view();
+				Dodaj_ksiazke_model temp2=new Dodaj_ksiazke_model();
+				new Dodaj_ksiazke_controller(temp,temp2);
+				
 				dispose();	
 			}
 		});

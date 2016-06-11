@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Okno_dodaj_ksiazke extends JFrame {
+public class Dodaj_ksiazke_view extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -24,7 +24,40 @@ public class Okno_dodaj_ksiazke extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-
+	private JButton btnDodajDoBazy;
+	private JButton btnAnuluj;
+	String get_tytul()
+	{
+		return textField.getText();
+	}
+	String get_autor()
+	{
+		return textField_1.getText();
+	}
+	String get_wydawnictwo()
+	{
+		return textField_2.getText();
+	}
+	String get_rok_wydania()
+	{
+		return textField_3.getText();
+	}
+	int get_ilosc()
+	{
+		return Integer.parseInt(textField_4.getText());
+	}
+	String get_kategoria()
+	{
+		return textField_5.getText();
+	}
+	void dodaj_listener(ActionListener listener)
+	{
+		btnDodajDoBazy.addActionListener(listener);
+	}
+	void anuluj_lister(ActionListener listener)
+	{
+		btnAnuluj.addActionListener(listener);
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +65,7 @@ public class Okno_dodaj_ksiazke extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Okno_dodaj_ksiazke() {
+	public Dodaj_ksiazke_view() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 479, 329);
 		contentPane = new JPanel();
@@ -93,26 +126,10 @@ public class Okno_dodaj_ksiazke extends JFrame {
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		
-		JButton btnDodajDoBazy = new JButton("Dodaj do bazy");
-		btnDodajDoBazy.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				Ksiazka ksiazka=new Ksiazka(textField_1.getText(),textField_2.getText(),textField_3.getText(),textField_4.getText(),textField_5.getText());
-				ksiazka.Zapisz_plik();
-			}
-		});
+		btnDodajDoBazy = new JButton("Dodaj do bazy");
+	
 		
-		JButton btnAnuluj = new JButton("Anuluj");
-		btnAnuluj.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				dispose();
-				
-				new Okno_admin();
-			}
-		});
+		btnAnuluj = new JButton("Anuluj");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)

@@ -66,8 +66,12 @@ public class Okno_lista_ksiazek extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Anuluj");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton_1.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Okno_admin();
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);

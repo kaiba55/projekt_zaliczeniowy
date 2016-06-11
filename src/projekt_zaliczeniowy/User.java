@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class User implements Serializable
 {
+	private static final long serialVersionUID = -6202177674934858598L;
 	static int nr_usera=1;
 	String imie;
 	String nazwisko;
@@ -90,5 +91,6 @@ public class User implements Serializable
 		}
 		return 1;
 	}
+	   
 }
 

@@ -1,5 +1,6 @@
 package projekt_zaliczeniowy;
 
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 public class Ksiazka implements Serializable
 {
 	static int numer_ksiazki=1;
+	private static final long serialVersionUID = -3484649703683444406L;
 	String tytul;
 	String autorzy;
 	String data_wydania;
@@ -18,11 +20,11 @@ public class Ksiazka implements Serializable
 	String kategoria;
 	int id;
 	
-	Ksiazka()
+	public Ksiazka()
 	{
 		;
 	}
-	Ksiazka(String tytul,String autorzy, String data_wydania,String wydawnictwo,String kategoria)
+	Ksiazka(String tytul,String autorzy, String data_wydania,String wydawnictwo,String kategoria,int ilosc)
 	{
 		this.tytul=tytul;
 		this.autorzy=autorzy;
@@ -30,6 +32,7 @@ public class Ksiazka implements Serializable
 		this.wydawnictwo=wydawnictwo;
 		this.kategoria=kategoria;
 		this.id=numer_ksiazki;
+		this.ilosc=ilosc;
 		numer_ksiazki++;	
 	}
 	public void Zapisz_plik()
@@ -61,6 +64,7 @@ public class Ksiazka implements Serializable
 			this.wydawnictwo=temp.wydawnictwo;
 			this.kategoria=temp.kategoria;
 			this.id=i;
+			this.ilosc=temp.ilosc;
 		}
 		catch(IOException e)
 		{
@@ -82,5 +86,10 @@ public class Ksiazka implements Serializable
 			e.printStackTrace();
 		}
 		return 1;
+	}
+	
+	public int dodaj(int a, int b)
+	{
+		return a+b;
 	}
 }

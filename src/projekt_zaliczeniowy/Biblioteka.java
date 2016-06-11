@@ -6,11 +6,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public final class Biblioteka 
+public final class Biblioteka implements Obserwowany
 {
 	//lista uzytkownikow i lista ksiazek, wczytanie ksiazek do bazy
 	//jtable do usuwania ksiazek
     private static volatile Biblioteka instance = null;
+    ArrayList<Obserwator> obserwatorzy;
     ArrayList<Ksiazka> lista_ksiazek=new ArrayList<Ksiazka>();
     ArrayList<User> lista_uzytkownikow=new ArrayList<User>();
     //przydala by sie jakas struktura danych do przechowywania par email i haslo+ panel logowania
@@ -26,6 +27,20 @@ public final class Biblioteka
     		lista_ksiazek.add(temp);
     	}
     }
+    
+    public void wczytaj_ksiazki(int a, int b) throws ClassNotFoundException
+    {
+
+    	for(int i=a;i<b;i++)
+    	{
+    		Ksiazka temp=new Ksiazka();
+    		temp.Odczyt_plik(i);
+    		/*System.out.println(temp.tytul);
+    		System.out.println(temp.autorzy);*/
+    		lista_ksiazek.add(temp);
+    	}
+    }
+    
     public void wczytaj_userow() throws ClassNotFoundException
     {
 
@@ -38,8 +53,7 @@ public final class Biblioteka
     		lista_uzytkownikow.add(temp2);
     	}
     }
-    
-    
+      
     public static Biblioteka getInstance() throws ClassNotFoundException 
     {
         if (instance == null) 
@@ -48,10 +62,12 @@ public final class Biblioteka
             {
                 if (instance == null) 
                 {
+                	
                 	String numeryksiazek="numery_userow";	
                 	User administrator=new User("Wojciech","Ksiazek","Chrzastowice","84","wojtekksiazekk@gmail.com","1312312","wojtek123","administrator");
                 	administrator.Zapisz_plik();
                     instance = new Biblioteka();//zrob w try zamiast if
+                    instance.obserwatorzy = new ArrayList<Obserwator>();
                     Ksiazka.numer_ksiazki=Ksiazka.odczytaj_ilosc_ksiazek();
                     User.nr_usera=User.odczytaj_ilosc_userow();
                     System.out.println(Ksiazka.numer_ksiazki);
@@ -64,13 +80,27 @@ public final class Biblioteka
         }
         return instance;
     }
-    
+    public void dodajObserwatora(Obserwator o){
+    	obserwatorzy.add(o);
+    	}
+    	 
+    	public void usunObserwatora(Obserwator o){
+    	int index = obserwatorzy.indexOf(o);
+    	obserwatorzy.remove(index);
+    	}
+    	 
+    	public void powiadamiajObserwatorow() throws ClassNotFoundException
+    	{
+    	for(Obserwator o : obserwatorzy)
+    	{
+    		o.update();
+    	}
+    	}
     private Biblioteka() 
     {
     	
     }
 
- 
 }
 
 
