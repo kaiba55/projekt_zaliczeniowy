@@ -8,13 +8,10 @@ import java.util.Iterator;
 
 public final class Biblioteka implements Obserwowany
 {
-	//lista uzytkownikow i lista ksiazek, wczytanie ksiazek do bazy
-	//jtable do usuwania ksiazek
     private static volatile Biblioteka instance = null;
     ArrayList<Obserwator> obserwatorzy;
     ArrayList<Ksiazka> lista_ksiazek=new ArrayList<Ksiazka>();
     ArrayList<User> lista_uzytkownikow=new ArrayList<User>();
-    //przydala by sie jakas struktura danych do przechowywania par email i haslo+ panel logowania
     public void wczytaj_ksiazki() throws ClassNotFoundException
     {
 
@@ -22,21 +19,6 @@ public final class Biblioteka implements Obserwowany
     	{
     		Ksiazka temp=new Ksiazka();
     		temp.Odczyt_plik(i);
-    		/*System.out.println(temp.tytul);
-    		System.out.println(temp.autorzy);*/
-    		lista_ksiazek.add(temp);
-    	}
-    }
-    
-    public void wczytaj_ksiazki(int a, int b) throws ClassNotFoundException
-    {
-
-    	for(int i=a;i<b;i++)
-    	{
-    		Ksiazka temp=new Ksiazka();
-    		temp.Odczyt_plik(i);
-    		/*System.out.println(temp.tytul);
-    		System.out.println(temp.autorzy);*/
     		lista_ksiazek.add(temp);
     	}
     }
@@ -44,12 +26,12 @@ public final class Biblioteka implements Obserwowany
     public void wczytaj_userow() throws ClassNotFoundException
     {
 
-    	for(int i=0;i<User.nr_usera;i++)
+    	for(int i=1;i<User.nr_usera;i++)
     	{
     		User temp2=new User();
     		temp2.Odczyt_plik(i);
-    		/*System.out.println(temp.imie);
-    		System.out.println(temp.nazwisko);*/
+    		System.out.println(temp2.email);
+    		System.out.println(temp2.haslo);
     		lista_uzytkownikow.add(temp2);
     	}
     }
@@ -62,40 +44,54 @@ public final class Biblioteka implements Obserwowany
             {
                 if (instance == null) 
                 {
+                	instance = new Biblioteka();
+                  
+               
+                	User.nr_usera=User.odczytaj_ilosc_userow();
+                	instance.wczytaj_userow();
+                	if(instance.lista_uzytkownikow.size()==0)
+                	{
+                		User administrator=new User("Wojciech","Ksiazek","Chrzastowice","84","wojtekksiazekk@gmail.com","1312312","wojtek123","administrator");
+                		administrator.Zapisz_plik();
+                	}  
+                	if(instance.lista_ksiazek.size()==0)
+                	{
+                		Ksiazka test=new Ksiazka("Pan Tadeusz","Adam Mickiewicz","1988","Znak","dramat",1);
+                		test.Zapisz_plik();	
+                	}  
                 	
-                	String numeryksiazek="numery_userow";	
-                	User administrator=new User("Wojciech","Ksiazek","Chrzastowice","84","wojtekksiazekk@gmail.com","1312312","wojtek123","administrator");
-                	administrator.Zapisz_plik();
-                    instance = new Biblioteka();//zrob w try zamiast if
+                	Ksiazka.numer_ksiazki=Ksiazka.odczytaj_ilosc_ksiazek();
+                 	instance.wczytaj_ksiazki();
+                    
                     instance.obserwatorzy = new ArrayList<Obserwator>();
-                    Ksiazka.numer_ksiazki=Ksiazka.odczytaj_ilosc_ksiazek();
-                    User.nr_usera=User.odczytaj_ilosc_userow();
-                    System.out.println(Ksiazka.numer_ksiazki);
-                    instance.wczytaj_ksiazki();
-                    instance.wczytaj_userow();
+                       
+                    //System.out.println("ilosc wczytanych userow"+User.nr_usera);
+                    
                 }
                 else
-                	System.out.println("problem"); //i to w catch
+                	System.out.println("problem"); 
             }
         }
         return instance;
     }
-    public void dodajObserwatora(Obserwator o){
+    public void dodajObserwatora(Obserwator o)
+    {
     	obserwatorzy.add(o);
-    	}
+    }
     	 
-    	public void usunObserwatora(Obserwator o){
+    public void usunObserwatora(Obserwator o)
+    {
     	int index = obserwatorzy.indexOf(o);
     	obserwatorzy.remove(index);
-    	}
+    }
     	 
-    	public void powiadamiajObserwatorow() throws ClassNotFoundException
-    	{
+    public void powiadamiajObserwatorow() throws ClassNotFoundException
+    {
     	for(Obserwator o : obserwatorzy)
     	{
     		o.update();
     	}
-    	}
+    }
     private Biblioteka() 
     {
     	

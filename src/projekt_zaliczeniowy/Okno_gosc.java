@@ -7,25 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Okno_gosc extends Okno_uzytkownik {
+public class Okno_gosc extends Okno_uzytkownik 
+{
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
+	void otworz_okno()
+	{
+		new Okno_szukaj2();
+	}
 	public Okno_gosc() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		setVisible(true);
+		super();
+		setVisible(true);	
 	}
 
 }

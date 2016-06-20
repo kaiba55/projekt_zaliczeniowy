@@ -28,7 +28,7 @@ public class Okno_lista_userow extends JFrame {
 	 */
 	public Okno_lista_userow() throws ClassNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 729, 300);
+		setBounds(100, 100, 1181, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -36,8 +36,8 @@ public class Okno_lista_userow extends JFrame {
 		setVisible(true);
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		String rowData[][]=new String[User.nr_usera][8];
-		for(int i=0;i<User.nr_usera-1;i++)
+		String rowData[][]=new String[User.nr_usera][10];
+		for(int i=0;i<Biblioteka.getInstance().lista_uzytkownikow.size();i++)//uwaga
 		{
 				User temp=Biblioteka.getInstance().lista_uzytkownikow.get(i);
 				rowData[i][0]=Integer.toString(temp.id_usera);
@@ -47,9 +47,22 @@ public class Okno_lista_userow extends JFrame {
 				rowData[i][4]=temp.nr_mieszkania;
 				rowData[i][5]=temp.email;
 				rowData[i][6]=temp.telefon;
-				rowData[i][7]=temp.typ;				
+				rowData[i][7]=temp.typ;
+				rowData[i][8]=temp.haslo;
+				rowData[i][9]="";
+				if(temp.lista_wypozyczen.size()!=0 ||temp.lista_wypozyczen!=null)
+				{
+					for(int j=0;j<temp.lista_wypozyczen.size();j++)
+					{
+						rowData[i][9]+=Integer.toString(temp.lista_wypozyczen.get(j))+",";
+					}
+				}
+				else
+				{
+					rowData[i][9]="";
+				}
 		}
-		Object columnNames[] = { "Id","Imie","Nazwisko", "Miejsce zamieszkania", "Nr mieszkania","E-mail","Telefon","Typ"};
+		Object columnNames[] = { "Id","Imie","Nazwisko", "Miejsce zamieszkania", "Nr mieszkania","E-mail","Telefon","Typ","Haslo","Lista wypozyczen"};
 		
 		table = new JTable(rowData,columnNames);
 		scrollPane.setViewportView(table);
@@ -57,30 +70,26 @@ public class Okno_lista_userow extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.EAST);
 		
-		JButton btnNewButton = new JButton("Usu\u0144 u\u017Cytkownika");
-		
 		JButton btnNewButton_1 = new JButton("Anuluj");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton_1.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Okno_admin();
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(5)
-							.addComponent(btnNewButton))
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
+					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(5)
-					.addComponent(btnNewButton)
-					.addGap(57)
+					.addGap(85)
 					.addComponent(btnNewButton_1)
 					.addContainerGap(143, Short.MAX_VALUE))
 		);

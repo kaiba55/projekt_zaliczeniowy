@@ -19,13 +19,11 @@ public class Logowanie extends JFrame {
 	private JPanel contentPane;
 	JButton btnSkorzystajJakoGo;
 	public Biblioteka biblioteka;
-	/**
-	 * Launch the application.
-	 */
-	/**
-	 * Create the frame.
-	 */
-	public Logowanie() {
+	
+	Logowanie_bazowe log;
+	
+	public Logowanie() 
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 466, 300);
 		contentPane = new JPanel();
@@ -36,7 +34,7 @@ public class Logowanie extends JFrame {
 		btnSkorzystajJakoUytkownik.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new Okno_user();
+				log=new Logowanie_user();
 				dispose();
 			}
 		});
@@ -46,7 +44,7 @@ public class Logowanie extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new Okno_admin();
+				log=new Logowanie_admin();
 				dispose();
 			}
 		});
@@ -57,6 +55,17 @@ public class Logowanie extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				new Okno_gosc();
+				dispose();
+			}
+		});
+		
+		JButton btnZarejestrujSie = new JButton("Zarejestruj sie !");
+		btnZarejestrujSie.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				Simple_factory fact=new Simple_factory();
+				new Okno_rejestracja(fact);
 				dispose();
 			}
 		});
@@ -72,8 +81,11 @@ public class Logowanie extends JFrame {
 							.addComponent(btnSkorzystajJakoAdministrator, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(110)
-							.addComponent(btnSkorzystajJakoGo, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(19, Short.MAX_VALUE))
+							.addComponent(btnSkorzystajJakoGo, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(143)
+							.addComponent(btnZarejestrujSie)))
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -84,7 +96,9 @@ public class Logowanie extends JFrame {
 						.addComponent(btnSkorzystajJakoAdministrator))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSkorzystajJakoGo)
-					.addContainerGap(103, Short.MAX_VALUE))
+					.addGap(27)
+					.addComponent(btnZarejestrujSie)
+					.addContainerGap(53, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

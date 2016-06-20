@@ -39,20 +39,21 @@ public class Okno_lista_ksiazek extends JFrame {
 		
 		scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		String rowData[][]=new String[Ksiazka.numer_ksiazki][6];
+		String rowData[][]=new String[Ksiazka.numer_ksiazki][7];
 		//System.out.println(Ksiazka.numer_ksiazki);
 		for(int i=0;i<Ksiazka.numer_ksiazki-1;i++)
 		{
 				Ksiazka temp=Biblioteka.getInstance().lista_ksiazek.get(i);
-				rowData[i][0]=Integer.toString(temp.id);
-				rowData[i][1]=temp.tytul;
-				rowData[i][2]=temp.autorzy;
-				rowData[i][3]=temp.data_wydania;
-				rowData[i][4]=temp.wydawnictwo;
-				rowData[i][5]=temp.kategoria;
+				rowData[i][0]=Integer.toString(temp.get_id());
+				rowData[i][1]=temp.get_tytul();
+				rowData[i][2]=temp.get_autorzy();
+				rowData[i][3]=temp.get_data_wydania();
+				rowData[i][4]=temp.get_wydawnictwo();
+				rowData[i][5]=temp.get_kategoria();
+				rowData[i][6]=Integer.toString(temp.get_ilosc());
 				
 		}
-		Object columnNames[] = { "id","Tytu³", "Autor", "Data wydania","Wydawnictwo","Kategoria"};
+		Object columnNames[] = { "id","Tytu³", "Autor", "Data wydania","Wydawnictwo","Kategoria","Ilosc"};
 		table = new JTable(rowData,columnNames);
 		scrollPane.setViewportView(table);
 		

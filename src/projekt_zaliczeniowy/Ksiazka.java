@@ -12,19 +12,54 @@ public class Ksiazka implements Serializable
 {
 	static int numer_ksiazki=1;
 	private static final long serialVersionUID = -3484649703683444406L;
-	String tytul;
-	String autorzy;
-	String data_wydania;
-	String wydawnictwo;
-	int ilosc;
-	String kategoria;
-	int id;
+	private String tytul;
+	private String autorzy;
+	private String data_wydania;
+	private String wydawnictwo;
+	private int ilosc;
+	private String kategoria;
+	private int id;
+	
+	public String get_tytul()
+	{
+		return tytul;
+	}
+	
+	public String get_autorzy()
+	{
+		return autorzy;
+	}
+	
+	public String get_data_wydania()
+	{
+		return data_wydania;
+	}
+	
+	public String get_wydawnictwo()
+	{
+		return wydawnictwo;
+	}
+	
+	public int get_ilosc()
+	{
+		return ilosc;
+	}
+	
+	public String get_kategoria()
+	{
+		return kategoria;
+	}
+	
+	public int get_id()
+	{
+		return id;
+	}
 	
 	public Ksiazka()
 	{
 		;
 	}
-	Ksiazka(String tytul,String autorzy, String data_wydania,String wydawnictwo,String kategoria,int ilosc)
+	public Ksiazka(String tytul,String autorzy, String data_wydania,String wydawnictwo,String kategoria,int ilosc)
 	{
 		this.tytul=tytul;
 		this.autorzy=autorzy;
@@ -45,6 +80,19 @@ public class Ksiazka implements Serializable
 		{
 			plik.writeObject(this);
 			plik2.writeObject(Ksiazka.numer_ksiazki);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public void Aktualizuj_plik(int p)
+	{
+		String nazwa_pliku=Integer.toString(p);
+		try(ObjectOutputStream plik=new ObjectOutputStream(new FileOutputStream(nazwa_pliku)))
+
+		{
+			plik.writeObject(this);
 		}
 		catch(IOException e)
 		{

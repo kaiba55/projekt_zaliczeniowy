@@ -12,21 +12,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Okno_admin extends JFrame {
+public class Okno_admin extends JFrame 
+{
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
-	public Okno_admin() {
-		Aktualizuj_Biblioteke akt=new Aktualizuj_Biblioteke();
-		Thread thread=new Thread(akt);
-		thread.start();
+	public Okno_admin() 
+	{
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

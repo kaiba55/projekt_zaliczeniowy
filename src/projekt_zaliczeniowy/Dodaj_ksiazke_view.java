@@ -58,14 +58,9 @@ public class Dodaj_ksiazke_view extends JFrame {
 	{
 		btnAnuluj.addActionListener(listener);
 	}
-	/**
-	 * Launch the application.
-	 */
 
-	/**
-	 * Create the frame.
-	 */
-	public Dodaj_ksiazke_view() {
+	public Dodaj_ksiazke_view() 
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 479, 329);
 		contentPane = new JPanel();
