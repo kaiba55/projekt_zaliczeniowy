@@ -19,7 +19,6 @@ public class Dodaj_ksiazke_controller
 
 class dodajListener implements ActionListener
 {
-
 	public void actionPerformed(ActionEvent e) 
 	{
 		model.dodaj_ksiazke(view.get_tytul(), view.get_autor(), view.get_rok_wydania(), view.get_wydawnictwo(), view.get_kategoria(),view.get_ilosc());
