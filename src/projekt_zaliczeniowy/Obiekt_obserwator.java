@@ -4,7 +4,7 @@ public class Obiekt_obserwator implements Obserwator
 {
 	Obiekt_obserwator()
 	{
-		
+		;
 	}
 	public void update() throws ClassNotFoundException
 	{

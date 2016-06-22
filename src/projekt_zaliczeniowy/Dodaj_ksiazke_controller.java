@@ -22,10 +22,21 @@ class dodajListener implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		model.dodaj_ksiazke(view.get_tytul(), view.get_autor(), view.get_rok_wydania(), view.get_wydawnictwo(), view.get_kategoria(),view.get_ilosc());
+		view.dispose();
+		new Dialog_po_dodaniu();		
 	}
 }
 
 class anulujListener implements ActionListener
+{
+	public void actionPerformed(ActionEvent e) 
+	{
+		new Okno_admin();
+		view.dispose();	
+	}
+}
+
+class okno_dialogowe implements ActionListener
 {
 	public void actionPerformed(ActionEvent e) 
 	{

@@ -22,7 +22,7 @@ public class Aktualizuj_Biblioteke implements Runnable
 			
 			try 
 			{
-				Thread.sleep(5000);
+				Thread.sleep(1000);
 			} 
 			catch(InterruptedException exc) 
 			{

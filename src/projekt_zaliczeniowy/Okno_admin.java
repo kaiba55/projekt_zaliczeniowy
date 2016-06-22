@@ -54,7 +54,7 @@ public class Okno_admin extends JFrame
 				catch (ClassNotFoundException e1) 
 				{
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					//e1.printStackTrace();
 				}
 				dispose();
 			}

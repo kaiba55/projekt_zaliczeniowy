@@ -49,24 +49,15 @@ public final class Biblioteka implements Obserwowany
                
                 	User.nr_usera=User.odczytaj_ilosc_userow();
                 	instance.wczytaj_userow();
+                	Ksiazka.numer_ksiazki=Ksiazka.odczytaj_ilosc_ksiazek();
+                 	instance.wczytaj_ksiazki();
                 	if(instance.lista_uzytkownikow.size()==0)
                 	{
                 		User administrator=new User("Wojciech","Ksiazek","Chrzastowice","84","wojtekksiazekk@gmail.com","1312312","wojtek123","administrator");
                 		administrator.Zapisz_plik();
                 	}  
-                	if(instance.lista_ksiazek.size()==0)
-                	{
-                		Ksiazka test=new Ksiazka("Pan Tadeusz","Adam Mickiewicz","1988","Znak","dramat",1);
-                		test.Zapisz_plik();	
-                	}  
-                	
-                	Ksiazka.numer_ksiazki=Ksiazka.odczytaj_ilosc_ksiazek();
-                 	instance.wczytaj_ksiazki();
-                    
-                    instance.obserwatorzy = new ArrayList<Obserwator>();
-                       
-                    //System.out.println("ilosc wczytanych userow"+User.nr_usera);
-                    
+                  
+                    instance.obserwatorzy = new ArrayList<Obserwator>();               
                 }
                 else
                 	System.out.println("problem"); 
